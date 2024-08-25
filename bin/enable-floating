@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Enable "floating" mode for all existing windows
+
+bspc query -N -n .floating -d | while read -r wid; do
+    bspc node "$wid" -t tiled
+done
+
+# Enable "floating" mode for new windows on the specified desktop (change desktop number here)
+
+FLOATING_DESKTOP_ID=$(bspc query -D -d '^3')
+
+bspc subscribe node_add | while read -a msg ; do
+    desk_id=${msg[2]}
+    wid=${msg[4]}
+    if [ "$FLOATING_DESKTOP_ID" = "$desk_id" ]; then
+        bspc node "$wid" -t tiled   # Change to "floating" mode
+    fi
+done
+
+# Bind "Alt + Space" to toggle "floating" mode for focused window
+
+bspc subscribe node_focus | while read -a msg ; do
+    wid=${msg[2]}
+    bspc node "$wid" -t floating
+done
+

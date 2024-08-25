@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sxhkd_config="/home/ian/.config/sxhkd/sxhkdrc"
+
+st -e vim "$sxhkd_config"

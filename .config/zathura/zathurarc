@@ -1,0 +1,6 @@
+set statusbar.page true
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+map i recolor
+map p print

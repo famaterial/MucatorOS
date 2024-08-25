@@ -1,0 +1,12 @@
+current_wallpaper=$(/home/ian/.local/bin/current-wallpaper)
+
+wal -i "$current_wallpaper" && /home/ian/.local/bin/update-dunst-colors.sh
+
+pkill -SIGHUP dunst
+
+/home/ian/.local/bin/update-polybar-colors.sh
+
+/home/ian/.local/bin/keyboard-color
+
+/home/ian/.local/bin/lockscreen
+

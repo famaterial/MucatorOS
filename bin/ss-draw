@@ -1,0 +1,19 @@
+ok so this script is working:
+
+#!/bin/bash
+
+custom_folder=~/ss
+
+current_datetime=$(date "+%I_%M_%S_%p_%m-%d-%y")
+
+scrot --select --line mode=edge "$custom_folder/screenshot_$current_datetime.png"
+
+new_file_name="$custom_folder/${current_datetime/screenshot_/}.png"
+mv "$custom_folder/screenshot_$current_datetime.png" "$new_file_name"
+
+notify-send "Screenshot Captured" "Saved as $new_file_name"
+
+temp_script="/tmp/ss-latest.sh"
+echo "#!/bin/bash" > "$temp_script"
+echo "feh "$new_file_name"" >> "$temp_script"
+chmod +x "$temp_script"

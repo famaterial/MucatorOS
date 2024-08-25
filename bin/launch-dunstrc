@@ -1,0 +1,5 @@
+#!/bin/sh
+
+dunstrc="/home/ian/.config/dunst/dunstrc"
+
+st -e vim "$dunstrc"

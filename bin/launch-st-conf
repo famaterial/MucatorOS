@@ -1,0 +1,3 @@
+#!/bin/sh
+
+st -e vim "/home/ian/st/config.h"

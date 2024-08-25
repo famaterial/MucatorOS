@@ -1,0 +1,86 @@
+{
+  "geometry-of-main_window_geometry": {
+    "frame_geometry": {
+      "height": 1379,
+      "width": 2642,
+      "x": 2464,
+      "y": 14
+    },
+    "full_screened": false,
+    "geometry": {
+      "height": 1379,
+      "width": 2642,
+      "x": 2464,
+      "y": 14
+    },
+    "maximized": false,
+    "normal_geometry": {
+      "height": 1379,
+      "width": 2642,
+      "x": 2464,
+      "y": 14
+    },
+    "qt": {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAAAAAmgAAAADgAAE/EAAAVwAAAJoAAAAA4AABPxAAAFcAAAAAAAAAAAFAAAAAmgAAAADgAAE/EAAAVw"
+    },
+    "screen": {
+      "depth": 24,
+      "device_pixel_ratio": 1.0,
+      "geometry_in_logical_pixels": {
+        "height": 1440,
+        "width": 5120,
+        "x": 0,
+        "y": 0
+      },
+      "index_in_screens_list": 0,
+      "manufacturer": "Samsung Electric Company",
+      "model": "C49RG9x",
+      "name": "DP-1",
+      "serial": "H1AK500000",
+      "size_in_logical_pixels": {
+        "height": 1440,
+        "width": 5120
+      },
+      "virtual_geometry": {
+        "height": 1440,
+        "width": 5120,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "main_window_state": {
+    "__class__": "bytearray",
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAA/////wAAAIcA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAlQD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB9AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOcA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEwD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAMkA////AAAKUgAABWMAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+  },
+  "old_prefs_migrated": true,
+  "session_data": {
+    "base_font_size": 16,
+    "book_scrollbar": false,
+    "controls_help_shown_count": 2,
+    "footer": {
+      "right": "progress"
+    },
+    "header": {},
+    "skipped_dialogs": {},
+    "standalone_font_settings": {},
+    "standalone_misc_settings": {
+      "remember_last_read": true,
+      "remember_window_geometry": false,
+      "save_annotations_in_ebook": true,
+      "singleinstance": false
+    },
+    "standalone_recently_opened": [
+      {
+        "authors": [
+          "Y. Daniel Liang"
+        ],
+        "key": "/home/ian/library/Y. Daniel Liang/Introduction to Java Programming and Data Structures (2)/Introduction to Java Programming and Data - Y. Daniel Liang.epub",
+        "pathtoebook": "/home/ian/library/Y. Daniel Liang/Introduction to Java Programming and Data Structures (2)/Introduction to Java Programming and Data - Y. Daniel Liang.epub",
+        "timestamp": "2024-01-08T13:53:40.762Z",
+        "title": "Introduction to Java Programming and Data Structures"
+      }
+    ]
+  }
+}

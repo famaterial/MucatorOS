@@ -1,0 +1,313 @@
+#######################
+# System Applications #
+#######################
+
+# terminal emulator
+alt + Return
+	st 
+
+alt + {_,shift +}Return
+	{st, bspc rule -a \* -o state=floating && st}
+
+alt + shift + grave
+	{sh /tmp/ss-latest.sh, bspc rule -a \* -o state=floating && sh /tmp/ss-latest.sh}
+
+alt + backslash 
+	{bspc rule -a \* -o state=floating && firefox --kiosk}
+
+alt + shift + 1
+	firefox --kiosk "google.com"
+
+alt + shift + 2 
+	firefox --kiosk "chat.openai.com"
+
+alt + shift + 3
+	firefox --kiosk "outlook.office.com"
+
+alt + shift + 4
+	firefox --kiosk "vcenter.rcs.local"
+
+alt + shift + 5
+	firefox --kiosk "10.30.26.1"
+
+alt + shift + 6
+	firefox --kiosk "reddit.com"
+
+alt + shift + 7
+	firefox --kiosk "file:///home/ian/mucator/testing/testingv28/index.html"
+
+# Switch to the next desktop
+alt + bracketright
+    bspc desktop -f next
+
+# Switch to the previous desktop
+alt + bracketleft
+    bspc desktop -f prev
+
+# Menu
+#	bspc desktop -n next && sleep 0.1 && bspc desktop -f next && /home/ian/.config/rofi/launchers/type-3/launcher.sh
+
+Menu
+	/home/ian/.config/rofi/launchers/type-3/launcher.sh
+
+# web browser
+alt + Tab
+	firefox
+
+super + a
+	pkill dunst && sleep 2 && dunst & sleep 1 && notify-send "Test" "This is a test notification. Hello Ian."
+
+###########
+# Scripts #
+###########
+
+alt + o
+     {openrgb, bspc rule -a \* -o state=floating && openrgb}
+
+alt + shift + b
+     {blender, bspc rule -a \* -o state=floating && blender} 
+ 
+
+# new wallpaper and color scheme
+ctrl + Tab
+	/home/ian/.local/bin/newstyle
+
+# Delete Current Wallpaper:
+alt + Delete
+	/home/ian/.local/bin/del-wal
+
+super + Tab
+	/home/ian/.local/bin/walselect
+
+# Lockscreen
+
+alt + l
+	betterlockscreen -l
+
+# Launch Picom Config
+super + p
+    bspc rule -a \* -o state=floating && st -e vim /home/ian/.config/picom/picom.conf
+
+
+# Open sxhkdrc in a floating st terminal
+super + x
+    bspc rule -a \* -o state=floating && st -e vim /home/ian/.config/sxhkd/sxhkdrc
+
+super + b
+    bspc rule -a \* -o state=floating && st -e vim /home/ian/.config/polybar/config.ini
+
+# Launch St Config
+super + s
+    bspc rule -a \* -o state=floating && st -e vim /home/ian/st/config.h
+
+super + F1
+       /home/ian/.local/bin/nginx-reload
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd && notify-send "SXHKD" "Configuration Reloaded"
+
+# Launch Dunstrc
+super + d
+    bspc rule -a \* -o state=floating && st -e vim /home/ian/.config/dunst/dunstrc
+
+# Random Keyboard Color from Pywal
+ctrl + Escape
+	/home/ian/.local/bin/random-keyboard-color
+
+# Phone extenstions shortcut
+alt + g
+	/home/ian/.local/bin/phone-shortcut
+
+# Middle School Map shortcut
+alt + m
+	zathura /home/ian/files/MS-Map.pdf
+
+alt + i
+	zathura /home/ian/files/Insurance-List.pdf
+
+alt + grave
+	/home/ian/.local/bin/ss-draw
+
+super + grave
+	/home/ian/.local/bin/ss-instant
+
+# Teacher Schedual
+alt + q
+	zathura /home/ian/files/Staff.pdf
+
+# Website Shortcuts
+
+alt + F1
+	firefox -new-window "https://outlook.office.com/mail/"
+
+alt + F2 
+	firefox -new-window "https://richmondk12mius-my.sharepoint.com/personal/ioneill_richmond_k12_mi_us/_layouts/15/onedrive.aspx?view=0"
+
+alt + F3 
+	firefox -new-window "https://vcenter.rcs.local/"
+
+alt + F4
+	firefox -new-window "https://richmond.gofmx.com/login?referrer=%2Fcalendar"
+
+alt + F5
+	firefox -new-window "https://lib.misd.net/common/welcome.jsp?context=richmondcsd"
+
+alt + F6
+	firefox -new-window "https://ps.ric.misd.net/admin/pw.html"
+
+alt + p 
+	firefox -new-window "http://10.1.7.35:9191/app?service=page/UserSummary"
+
+alt + F7
+	firefox -new-window "http://10.35.21.104/"
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+# alt + Escape
+#	bspc {quit,wm -r}
+
+# close and kill
+alt + space
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
+
+##################
+# Audio Controls #
+##################
+
+Pause
+	pamixer --allow-boost --increase 5
+
+Scroll_Lock
+	pamixer --allow-boost --decrease 5
+
+Print
+	pamixer --toggle-mute
+
+#
+# state/flags
+#
+
+# set the window state
+super + {shift + t,s,f}
+	bspc node -t {pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# Swap the focused window with the closest window in the given direction
+alt + {v,comma,period,b}
+	bspc node -s {west,south,north,east}
+
+#######################################
+
+# focus the node in the given direction
+# alt + comma
+#	bspc node -f east
+
+# alt + period
+#	bspc node -f west
+
+#######################################
+
+# Resize
+
+# Expand floating window to the left
+Fn + A
+	bspc node -z left 50 0
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+# alt + bracket{left,right}
+#	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; 
+	bspc wm -h on
+
+# Switch to desktop
+alt + {1-9,0}
+    bspc desktop -f '^{1-9,10}'
+
+# Send focused window to desktop
+super + {1-9,0}
+    bspc node -d '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+alt + shift + {a,d,e,f}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+ctrl + {a,d,e,f}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+alt + {a,d,e,f}
+	bspc node -v {-95 0,0 95,0 -95,95 0}
+
+
+##################
+# Logitech Mouse #
+##################
+
+button9
+    bspc desktop --focus next
+
+button8
+    bspc desktop --focus prev

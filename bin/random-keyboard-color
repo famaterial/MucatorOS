@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Get a random line number from the colors file
+line=$(shuf -i 1-$(wc -l < "$HOME/.cache/wal/colors") -n 1)
+
+# Get the color from the randomly chosen line
+color=$(sed -n "${line}p" "$HOME/.cache/wal/colors")
+
+# Remove the '#' character
+color=${color#"#"}
+
+# Convert to uppercase
+color=$(echo "$color" | tr '[:lower:]' '[:upper:]')
+
+# Execute the OpenRGB command with the extracted color
+openrgb --device "Logitech G512 RGB" --mode breathing --color "$color" --brightness 100

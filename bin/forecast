@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Set the floating rule for all windows
+bspc rule -a '*' -o state=floating
+
+# Open a new st terminal with your desired command and window size
+st -g 125x40 -c 'floating-terminal' -e sh -c 'curl wttr.in/48062; tail -f /dev/null'

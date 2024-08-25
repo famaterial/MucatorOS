@@ -1,0 +1,5 @@
+#!/bin/sh
+
+bspwmrc="/home/ian/.config/bspwm/bspwmrc"
+
+st -e vim "$bspwmrc"

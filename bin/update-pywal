@@ -1,0 +1,13 @@
+#!/bin/bash
+
+WALLPATH=$(cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g" | sed "s/,//g")
+
+QWALLPATH="\"$WALLPATH\""
+
+wal -i "$QWALLPATH"
+
+/home/ian/.local/bin/update-dunst-colors.sh &&
+
+pkill -SIGHUP dunst
+
+/home/ian/.local/bin/update-polybar-colors.sh

@@ -1,0 +1,40 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20240403_071532
+====================================================================================================
+
+1034  |Info:    ------------------------------------------------------
+1034  |Info:    |               Start device detection               |
+1034  |Info:    ------------------------------------------------------
+1036  |Info:    Initializing HID interfaces: Success
+1041  |Info:    ------------------------------------------------------
+1041  |Info:    |             Detecting I2C interfaces               |
+1041  |Info:    ------------------------------------------------------
+1041  |Info:    Registering I2C interface: /dev/i2c-3 Device 8086:9BC8 Subsystem: 103C:8719
+1041  |Info:    Registering I2C interface: /dev/i2c-1 Device 8086:9BC8 Subsystem: 103C:8719
+1041  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1041  |Info:    Registering I2C interface: /dev/i2c-6 Device 0000:0000 Subsystem: 0000:0000
+1042  |Info:    Registering I2C interface: /dev/i2c-4 Device 8086:9BC8 Subsystem: 103C:8719
+1042  |Info:    Registering I2C interface: /dev/i2c-2 Device 8086:9BC8 Subsystem: 103C:8719
+1042  |Info:    Registering I2C interface: /dev/i2c-0 Device 8086:06A3 Subsystem: 103C:8719
+1042  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1042  |Info:    Registering I2C interface: /dev/i2c-5 Device 0000:0000 Subsystem: 0000:0000
+1042  |Info:    ------------------------------------------------------
+1042  |Info:    |               Detecting I2C devices                |
+1042  |Info:    ------------------------------------------------------
+1526  |Info:    ------------------------------------------------------
+1526  |Info:    |               Detecting I2C PCI devices            |
+1526  |Info:    ------------------------------------------------------
+1527  |Info:    ------------------------------------------------------
+1527  |Info:    |               Detecting HID devices                |
+1527  |Info:    ------------------------------------------------------
+1527  |Info:    [Logitech G512 RGB] Registering RGB controller
+1527  |Info:    ------------------------------------------------------
+1527  |Info:    |            Detecting libusb HID devices            |
+1527  |Info:    ------------------------------------------------------
+1559  |Info:    ------------------------------------------------------
+1559  |Info:    |              Detecting other devices               |
+1559  |Info:    ------------------------------------------------------
+1562  |Info:    ------------------------------------------------------
+1562  |Info:    |                Detection completed                 |
+1562  |Info:    ------------------------------------------------------

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+rm $(cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g") && 
+
+feh --bg-fill --randomize /home/ian/wallpapers/
+wal -i $(cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g") && 
+
+/home/ian/.local/bin/update-dunst-colors.sh &&
+
+pkill -SIGHUP dunst
+
+notify-send "Wallpaper Deleted. New Wallpaper" "$(cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g")"
+
+

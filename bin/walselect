@@ -1,0 +1,36 @@
+#!/bin/bash
+
+current_wallpaper=$(/home/ian/.local/bin/current-wallpaper)
+
+notify-send "Set Wallpaper" "Press Enter to Select"
+
+# Directory containing the wallpapers
+WALLPAPER_DIR="/home/ian/wallpapers"
+
+# Function to set the wallpaper
+set_wallpaper() {
+    local img_path="$1"
+    feh --bg-scale "$img_path" 
+   
+}
+
+# Run feh in slideshow mode, get the selected image path on Enter press
+img_path=$(feh --fullscreen --scale-down --auto-zoom --action "echo %F; pkill feh" "$WALLPAPER_DIR" | head -n 1)
+
+# If an image was selected, set it as the wallpaper
+if [[ -n "$img_path" ]]; then
+    set_wallpaper "$img_path"  
+else
+    echo "No image selected."
+fi
+
+wal -i "$current_wallpaper" && /home/ian/.local/bin/update-dunst-colors.sh
+
+pkill -SIGHUP dunst
+
+/home/ian/.local/bin/update-polybar-colors.sh
+
+/home/ian/.local/bin/keyboard-color
+
+/home/ian/.local/bin/lockscreen
+

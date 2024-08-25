@@ -1,0 +1,12 @@
+#!/bin/bash
+
+feh --bg-fill --randomize /home/ian/wallpapers/
+wal -i $(cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g" | sed "s/,//g") && /home/ian/.local/bin/update-dunst-colors.sh &&
+
+pkill -SIGHUP dunst
+
+/home/ian/.local/bin/update-polybar-colors.sh
+
+/home/ian/.local/bin/keyboard-color
+
+/home/ian/.local/bin/lockscreen

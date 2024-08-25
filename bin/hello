@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo rm -rf /var/www/mucator
+
+sudo cp -r /home/ian/mucator/testing/testingv24/ /var/www/mucator
+
+sudo systemctl reload nginx

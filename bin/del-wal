@@ -1,0 +1,35 @@
+#!/bin/sh
+
+log_file="/home/ian/files/wallpapers.log"
+
+current_wallpaper=$(cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g")
+
+num_files_before=$(find /home/ian/wallpapers -type f | wc -l)
+
+echo "Original Wallpaper: $current_wallpaper - Files in /home/ian/wallpapers: $num_files_before" >> "$log_file"
+
+rm "$current_wallpaper"
+
+# Try to open the deleted wallpaper with feh
+if feh "$current_wallpaper"; then
+    echo "Deletion failed: The wallpaper $current_wallpaper was not deleted." >> "$log_file"
+    exit
+else
+    # If feh failed to open the image, capture the error message
+    error_message=$(feh "$current_wallpaper" 2>&1)
+
+    feh --bg-fill --randomize /home/ian/wallpapers/
+    wal -i $(cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g") &&
+    /home/ian/.local/bin/update-dunst-colors.sh &&
+    pkill -SIGHUP dunst
+   
+    # Send a notification with the feh error message
+    notify-send "feh Error" "Failed to open wallpaper: $error_message"
+
+    echo "Deletion successful: The wallpaper $current_wallpaper was deleted." >> "$log_file"
+
+    num_files_after=$(find /home/ian/wallpapers -type f | wc -l)
+    echo "Files in /home/ian/wallpapers after deletion: $num_files_after" >> "$log_file"
+    echo "-------------------------------------------------" >> "$log_file"
+fi
+

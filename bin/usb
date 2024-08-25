@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Get the number of connected USB drives
+usb_count=$(lsblk -o name | grep -o '^sd' | uniq | wc -l)
+
+# Update Polybar module
+if [ "$usb_count" -gt 0 ]; then
+    echo "󱇰"  # USB icon without specifying color
+else
+    echo ""  # Echo space if no drives are connected
+fi

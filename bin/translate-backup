@@ -1,0 +1,52 @@
+#!/bin/sh
+
+HELP='Translates from English to Spanish or Spanish to English. \n\nUsage: translate [word] [word] [word] [word] ...'
+
+translation() {
+    query=$(printf '%s%%20' "$@" | sed 's/%%20$//')
+
+
+    # Puts curl output into "data.html" file
+    curl -so "data.html" "https://www.spanishdict.com/translate/$query"
+    # Read the content of the data.html file
+    curl_output=$(cat data.html)
+    # Extract parts with lang="en"
+    en_parts=$(echo "$curl_output" | grep -o '<span class="S7halQ2C" lang="en">[^<]*</span>' | sed 's/<[^>]*>//g; s/&amp;/\&/g; s/&lt;/\</g; s/&gt;/\>/g; s/&#x27;/'\''/g')
+    # Extract parts with lang="es"
+    es_parts=$(echo "$curl_output" | grep -o '<span class="msZ0iHzp" lang="es">[^<]*</span>' | sed 's/<[^>]*>//g; s/&amp;/\&/g; s/&lt;/\</g; s/&gt;/\>/g; s/&#x27;/'\''/g')
+
+    # Main Input Translation
+    tds_parts=$(echo "$curl_output" | grep -o 'class="tds4TDh9">[^<]*</a>' | sed 's/.*">\(.*\)<\/a>/\1/')
+
+    # Store the lines in arrays
+    IFS=$'\n' read -d '' -r -a en_lines <<< "$en_parts"
+    IFS=$'\n' read -d '' -r -a es_lines <<< "$es_parts"
+    IFS=$'\n' read -d '' -r -a tds_lines <<< "$tds_parts"
+
+    # Print the argument and add line break
+    echo
+    echo "$@:"
+    echo
+
+    # Print the main translation word(s)
+    for ((i = 0; i < ${#tds_lines[@]}; i++)); do
+	echo "${tds_lines[i]}"
+    done
+    echo
+
+    # Iterate through the arrays and print the matched pairs with line breaks
+    for ((i = 0; i < ${#en_lines[@]}; i++)); do
+	echo "${en_lines[i]}"
+	echo "${es_lines[i]}"
+        echo
+        if (( (i+1) % 2 == 0 )); then
+            echo
+        fi
+    done
+}
+
+case "$1" in
+	-h) printf "$HELP \n" ;;
+	--help) printf "$HELP \n" ;;
+	*) translation "$@" ;;
+esac

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Get the fourth line from the colors file
+color=$(sed -n '2p' ~/.cache/wal/colors)
+
+# Remove the '#' character
+color=${color#"#"}
+
+# Convert to uppercase
+color=$(echo "$color" | tr '[:lower:]' '[:upper:]')
+
+# Execute the OpenRGB command with the extracted color and brightness
+openrgb --device "Logitech G512 RGB" --mode breathing --color "$color" --brightness 100
+

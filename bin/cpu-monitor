@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# File path to the CPU temperature sensor
+temp_file="/sys/class/hwmon/hwmon3/temp1_input"
+
+# Threshold temperature in degrees Fahrenheit
+threshold_fahrenheit=170
+
+# Function to convert millidegrees Celsius to Fahrenheit
+millidegree_celsius_to_fahrenheit() {
+    millidegree_celsius=$1
+    fahrenheit=$(echo "scale=0; ($millidegree_celsius * 9 / 5000 + 32 + 0.5) / 1" | bc)
+    echo $fahrenheit
+}
+
+# Read temperature from the file
+temperature=$(cat "$temp_file")
+
+# Convert temperature to Fahrenheit and round to the nearest whole number
+temperature_fahrenheit=$(millidegree_celsius_to_fahrenheit $temperature)
+
+# Check if the temperature is above the threshold
+if ((temperature_fahrenheit > threshold_fahrenheit)); then
+    echo "󰈸 $temperature_fahrenheit°F"
+else
+    echo "$temperature_fahrenheit°F"
+fi

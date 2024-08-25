@@ -1,0 +1,5 @@
+#!/bin/sh
+
+picom_config="/home/ian/.config/picom/picom.conf"
+
+st -e vim "$picom_config"

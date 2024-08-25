@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Disable "floating" mode for all existing windows
+
+bspc query -N -n .floating -d | while read -r wid; do
+    bspc node "$wid" -t tiled
+done
+
+# Remove the "Alt + Space" binding (toggle) for "floating" mode
+
+bspc subscribe node_focus | while read -a msg ; do
+    wid=${msg[2]}
+    bspc node "$wid" -t tiled
+done
+

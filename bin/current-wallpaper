@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g"
+

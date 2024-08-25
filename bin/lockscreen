@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Function to set the lockscreen
+set_lockscreen() {
+    current_wallpaper=$(cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g")
+    file_extension="${current_wallpaper##*.}"
+    blurred_wallpaper="/tmp/currentlockscreen.$file_extension"
+    convert "$current_wallpaper" -blur 0x30 "$blurred_wallpaper"
+    betterlockscreen -u "$blurred_wallpaper"
+}
+
+# Check if a lockscreen is already running
+if [ -f /tmp/lockscreen.pid ]; then
+    # Check if the previous wallpaper has changed
+    previous_wallpaper=$(cat /tmp/previous_wallpaper.txt)
+    current_wallpaper=$(cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g")
+    
+    if [ "$previous_wallpaper" != "$current_wallpaper" ]; then
+        # Cancel the previous lockscreen process
+        kill $(cat /tmp/lockscreen.pid)
+    fi
+fi
+
+# Store the current wallpaper for comparison
+cat ~/.fehbg | grep 'feh' | awk '{print $4}' | sed "s/'//g" > /tmp/previous_wallpaper.txt
+
+# Set a timer to trigger the lockscreen command after 15 seconds
+(sleep 20s && set_lockscreen) &
+
+# Record the lockscreen process ID
+echo $! > /tmp/lockscreen.pid
+

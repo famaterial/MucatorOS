@@ -1,0 +1,16 @@
+#!/bin/bash
+
+random_wallpaper=$(find /home/ian/wallpapers/ -type f | shuf -n 1)
+
+feh --bg-fill "$random_wallpaper"
+
+wal -i "$random_wallpaper" && /home/ian/.local/bin/update-dunst-colors.sh
+
+pkill -SIGHUP dunst
+
+/home/ian/.local/bin/update-polybar-colors.sh
+
+/home/ian/.local/bin/keyboard-color
+
+/home/ian/.local/bin/lockscreen
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Set your sudo password
+sudo_password="Ijo1"
+
+# Execute commands with sudo in the background
+echo "$sudo_password" | sudo -S rm -rf /var/www/mucator 
+echo "$sudo_password" | sudo -S cp -r /home/ian/mucator/testing/testingv25/ /var/www/mucator 
+echo "$sudo_password" | sudo -S systemctl reload nginx &
+
+# Notify user that NGINX has been reloaded
+notify-send "NGINX" "Site Published"
+

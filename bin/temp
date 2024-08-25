@@ -1,0 +1,11 @@
+#!/bin/bash
+
+API_KEY="0ff769350219dba92abd9008d199eaf3"
+LATITUDE="42.8101"
+LONGITUDE="-82.7490"
+UNITS="imperial"  # Change to "imperial" for Fahrenheit
+
+response=$(curl -s "http://api.openweathermap.org/data/2.5/weather?lat=$LATITUDE&lon=$LONGITUDE&units=$UNITS&appid=$API_KEY")
+temperature=$(echo "$response" | jq -r '.main.temp')
+
+echo "$temperature°F"  # Adjust the output format as needed

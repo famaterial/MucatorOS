@@ -1,0 +1,41 @@
+#!/bin/bash
+
+API_KEY="0ff769350219dba92abd9008d199eaf3"
+LATITUDE="42.8101"
+LONGITUDE="-82.7490"
+UNITS="imperial"  # Change to "imperial" for Fahrenheit
+
+response=$(curl -s "http://api.openweathermap.org/data/2.5/weather?lat=$LATITUDE&lon=$LONGITUDE&units=$UNITS&appid=$API_KEY")
+
+# Extract temperature and weather condition
+temperature=$(echo "$response" | jq -r '.main.temp')
+weather_condition=$(echo "$response" | jq -r '.weather[0].description')
+
+# Create a mapping of weather conditions to nerd font icons
+declare -A weather_icons
+weather_icons["overcast clouds"]=""
+weather_icons["light rain"]=""
+weather_icons["broken clouds"]=""
+weather_icons["few clouds"]=""
+weather_icons["clear sky"]="󰖙"
+weather_icons["scattered clouds"]=""
+weather_icons["moderate rain"]=""
+weather_icons["heavy intensity rain"]=""
+weather_icons["extreme rain"]=""
+weather_icons["snow"]=""
+weather_icons["heavy snow"]="󰙿"
+weather_icons["light snow"]=""
+
+# Check if the weather condition is in the mapping, otherwise use a default icon
+if [[ -n "${weather_icons[$weather_condition]}" ]]; then
+    icon="${weather_icons[$weather_condition]}"
+else
+    icon=" "  # Default icon (space) if no matching icon is found
+fi
+
+# Capitalize the first letter of each word in weather_condition
+weather_condition=$(echo "$weather_condition" | sed 's/\b\(.\)/\u\1/g')
+
+# Concatenate temperature, icon, and weather condition and display on the same line
+echo "$temperature°F | $icon"
+

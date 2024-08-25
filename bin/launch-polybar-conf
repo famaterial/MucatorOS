@@ -1,0 +1,5 @@
+#!/bin/sh
+
+polybarconf="/home/ian/.config/polybar/config.ini"
+
+st -e vim "$polybarconf"
